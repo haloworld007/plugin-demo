@@ -1,4 +1,7 @@
 node_modules
+dist
+
+# web
 web/.env.local
 web/.umirc.local.ts
 web/config/config.local.ts
@@ -8,6 +11,46 @@ web/src/.umi-test
 .umi
 .umi-production
 .umi-test
-dist
 .mfsu
 .swc
+
+# server
+server/.env
+server/.env.development.local
+server/.env.test.local
+server/.env.production.local
+server/.env.local
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+server/build
+
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+
+# temp directory
+.temp
+.tmp
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
