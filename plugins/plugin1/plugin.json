@@ -1,0 +1,14 @@
+{
+  "name": "plugin1",
+  "description": "示例插件",
+  "routes": [
+    {
+      "path": "/plugin1",
+      "name": "插件1",
+      "component": "./web/page/Example/index.tsx"
+    }
+  ],
+  "access": {
+    "canAccessPlugin1": true
+  }
+}

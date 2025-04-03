@@ -1,0 +1,13 @@
+node_modules
+web/.env.local
+web/.umirc.local.ts
+web/config/config.local.ts
+web/src/.umi
+web/src/.umi-production
+web/src/.umi-test
+.umi
+.umi-production
+.umi-test
+dist
+.mfsu
+.swc
