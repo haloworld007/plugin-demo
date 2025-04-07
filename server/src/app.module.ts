@@ -6,11 +6,16 @@ import { UsersModule } from './users/users.module';
 import * as fs from 'fs';
 import * as path from 'path';
 
+// 为动态模块定义接口
+interface NestJsModule {
+  [key: string]: any;
+}
+
 @Module({})
 export class AppModule {
-  static register(): DynamicModule {
+  static async register(): Promise<DynamicModule> {
     // 动态发现并加载插件模块
-    const pluginModules = this.discoverPluginModules();
+    const pluginModules = await this.discoverPluginModules();
 
     return {
       module: AppModule,
@@ -23,8 +28,8 @@ export class AppModule {
   /**
    * 动态发现插件模块
    */
-  private static discoverPluginModules(): any[] {
-    const modules: any[] = [];
+  private static async discoverPluginModules(): Promise<DynamicModule[]> {
+    const modules: DynamicModule[] = [];
 
     // 在构建后的目录中，实际路径是 dist/plugins/plugin1/server/src/modules/...
     // __dirname 指向 dist/server/src，所以我们需要回到 dist 根目录
@@ -95,18 +100,19 @@ export class AppModule {
             );
 
             try {
-              // 使用require代替import，更稳定地加载本地文件
-
-              const importedModule = require(compiledModulePath);
+              // 使用动态导入模块
+              const importedModule = (await import(
+                compiledModulePath
+              )) as NestJsModule;
               const moduleName = `${moduleDir.charAt(0).toUpperCase() + moduleDir.slice(1)}Module`;
 
               // 添加更安全的类型检查
               if (
                 importedModule &&
                 typeof importedModule === 'object' &&
-                importedModule[moduleName]
+                moduleName in importedModule
               ) {
-                modules.push(importedModule[moduleName]);
+                modules.push(importedModule[moduleName] as DynamicModule);
                 console.log(`成功加载插件模块: ${plugin}/${moduleDir}`);
               } else {
                 console.warn(
