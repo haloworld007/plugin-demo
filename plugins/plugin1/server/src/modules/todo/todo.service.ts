@@ -7,6 +7,37 @@ export class TodoService {
   private todos: Todo[] = [];
   private idCounter = 1;
 
+  constructor() {
+    // 初始化一些示例数据
+    const now = new Date();
+    this.todos = [
+      {
+        id: this.idCounter++,
+        title: "学习 NestJS",
+        description: "学习如何使用 NestJS 框架开发后端应用",
+        completed: false,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        id: this.idCounter++,
+        title: "完成插件系统",
+        description: "实现动态加载插件的功能",
+        completed: true,
+        createdAt: new Date(now.getTime() - 86400000), // 一天前
+        updatedAt: now,
+      },
+      {
+        id: this.idCounter++,
+        title: "编写单元测试",
+        description: "为 Todo 模块编写完整的单元测试",
+        completed: false,
+        createdAt: new Date(now.getTime() - 172800000), // 两天前
+        updatedAt: new Date(now.getTime() - 172800000),
+      },
+    ];
+  }
+
   findAll(): Todo[] {
     return this.todos;
   }
