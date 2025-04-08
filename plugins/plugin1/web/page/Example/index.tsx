@@ -5,7 +5,7 @@ import styles from './index.less';
 const Example: React.FC = () => {
   return (
     <div className={styles.example}>
-      <Button>hello world</Button>
+      <Button>hello world 007</Button>
     </div>
   );
 };
