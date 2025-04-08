@@ -1,7 +1,27 @@
 {
   "name": "plugin1",
   "description": "示例插件",
+  "version": "1.0.0",
+  "author": {
+    "name": "开发者姓名",
+    "email": "developer@example.com"
+  },
+  "license": "MIT",
+  "keywords": ["示例", "插件", "demo"],
+  "dependencies": {
+    "core": "^2.0.0"
+  },
+  "icon": "./assets/icon.svg",
+  "enabled": true,
   "web": {
+    "dependencies": {
+      "@ant-design/icons": "^5.0.0",
+      "@ant-design/pro-components": "^2.4.0",
+      "react": "^18.0.0",
+      "react-dom": "^18.0.0",
+      "ahooks": "^3.7.0",
+      "antd": "^5.0.0"
+    },
     "routes": [
       {
         "path": "/plugin1",
@@ -11,11 +31,55 @@
     ],
     "access": {
       "canAccessPlugin1": true
+    },
+    "menus": [
+      {
+        "name": "插件1菜单",
+        "path": "/plugin1",
+        "icon": "AppstoreOutlined",
+        "order": 100
+      }
+    ],
+    "assets": ["./web/assets/**/*"],
+    "i18n": {
+      "zh-CN": "./web/locales/zh-CN.json",
+      "en-US": "./web/locales/en-US.json"
+    },
+    "theme": {
+      "primaryColor": "#1890ff"
     }
   },
   "server": {
-    "controllers": [],
-    "services": [],
-    "modules": []
+    "dependencies": {
+      "@nestjs/common": "^10.0.0",
+      "@nestjs/core": "^10.0.0",
+      "@nestjs/typeorm": "^10.0.0",
+      "typeorm": "^0.3.0",
+      "rxjs": "^7.8.0",
+      "class-validator": "^0.14.0",
+      "class-transformer": "^0.5.1"
+    },
+    "controllers": ["./server/src/controllers/*.controller.ts"],
+    "services": ["./server/src/services/*.service.ts"],
+    "modules": ["./server/src/modules/*.module.ts"],
+    "middlewares": ["./server/src/middlewares/*.middleware.ts"],
+    "models": ["./server/src/models/*.model.ts"],
+    "crons": [
+      {
+        "name": "示例定时任务",
+        "schedule": "0 0 * * *",
+        "handler": "./server/src/crons/example.cron.ts"
+      }
+    ],
+    "config": {
+      "database": {
+        "entities": ["./server/src/entities/*.entity.ts"]
+      }
+    }
+  },
+  "hooks": {
+    "beforeInstall": "./scripts/beforeInstall.js",
+    "afterInstall": "./scripts/afterInstall.js",
+    "beforeUninstall": "./scripts/beforeUninstall.js"
   }
 }
