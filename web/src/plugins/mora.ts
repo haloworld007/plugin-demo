@@ -16,11 +16,18 @@ interface PluginRoute {
 interface Plugin {
   name: string;
   description: string;
-  routes?: PluginRoute[];
-  access?: Record<string, boolean>;
+  web: {
+    routes?: PluginRoute[];
+    access?: Record<string, boolean>;
+  };
+  server: {
+    controllers?: string[];
+    services?: string[];
+    modules?: string[];
+  };
   path?: string;
   id: string;
-  [key: string]: any;
+  // [key: string]: any;
 }
 
 // 插件加载器
@@ -59,9 +66,9 @@ export default (api: IApi) => {
           };
 
           api.logger.info(`✅ 插件 [${plugin.name || plugin.id}] 加载成功`);
-          if (plugin.routes?.length) {
-            api.logger.info(`🛣️ 发现 ${plugin.routes.length} 条路由`);
-            plugin.routes.forEach((route, index) => {
+          if (plugin.web?.routes?.length) {
+            api.logger.info(`🛣️ 发现 ${plugin.web.routes.length} 条路由`);
+            plugin.web.routes.forEach((route, index) => {
               api.logger.info(
                 `  路由${index + 1}: ${route.path} => ${route.component}`,
               );
@@ -86,10 +93,10 @@ export default (api: IApi) => {
     // 合并插件路由
     let routeCount = 0;
     plugins.forEach((plugin: Plugin) => {
-      if (plugin.routes && Array.isArray(plugin.routes)) {
+      if (plugin.web?.routes && Array.isArray(plugin.web.routes)) {
         api.logger.info(`🔄 处理插件 [${plugin.name}] 的路由`);
 
-        const processedRoutes = plugin.routes.map((route: PluginRoute) => {
+        const processedRoutes = plugin.web.routes.map((route: PluginRoute) => {
           // 处理组件路径
           let componentPath = route.component;
 
