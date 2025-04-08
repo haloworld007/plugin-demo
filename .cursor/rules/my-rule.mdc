@@ -7,3 +7,4 @@ alwaysApply: true
 # rules
 
 - 使用pnpm
+- 使用css module

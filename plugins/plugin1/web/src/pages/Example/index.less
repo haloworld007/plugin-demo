@@ -1,3 +1,53 @@
 .example {
   color: red;
 }
+
+.todoList {
+  max-width: 500px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.todoHeader {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.todoInput {
+  flex: 1;
+}
+
+.todoItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.todoItem:last-child {
+  border-bottom: none;
+}
+
+.todoItemTitle {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.todoItemCompleted {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.todoItemDelete {
+  margin-left: 10px;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+}
