@@ -1,11 +1,13 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import styles from './index.less';
 
 const Example: React.FC = () => {
   return (
     <div className={styles.example}>
-      <Button>hello world 007</Button>
+      <Button onClick={() =>  {
+        message.info('hello world')
+      }}>hello world</Button>
     </div>
   );
 };

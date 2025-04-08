@@ -5,7 +5,7 @@
     {
       "path": "/plugin1",
       "name": "插件1",
-      "component": "./web/page/Example/index.tsx"
+      "component": "./web/src/pages/Example/index.tsx"
     }
   ],
   "access": {
