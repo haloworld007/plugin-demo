@@ -1,5 +1,6 @@
 import { defineConfig } from '@umijs/max';
 import { join } from 'path';
+
 export default defineConfig({
   antd: {},
   access: {},
@@ -31,7 +32,7 @@ export default defineConfig({
     },
   ],
   npmClient: 'pnpm',
-  plugins: ['./src/plugins/mora.ts'],
+  plugins: [require.resolve('@mora-credit/plugin-client/dist/umi-plugin')],
   extraBabelIncludes: [join(__dirname, '../plugins/plugin1')],
   alias: {
     '@plugins': join(__dirname, '../plugins'),
