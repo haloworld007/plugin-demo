@@ -69,7 +69,7 @@ const ExamplePage: React.FC = () => {
                     type="text"
                     danger
                     className={styles.todoItemDelete}
-                    // icon={<DeleteOutlined />}
+                    icon={<span className={styles.delete}>删除</span>}
                     onClick={() => deleteTodo(todo.id)}
                   />
                 </div>
