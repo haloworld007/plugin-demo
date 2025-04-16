@@ -2,10 +2,9 @@
   "extends": "./tsconfig.json",
   "exclude": ["node_modules", "test", "dist", "**/*spec.ts"],
   "compilerOptions": {
-    "rootDirs": ["src", "../plugins"],
     "paths": {
       "@nestjs/*": ["node_modules/@nestjs/*"]
     }
   },
-  "include": ["src/**/*", "../plugins/*/server/src/**/*"]
+  "include": ["src/**/*"]
 }
